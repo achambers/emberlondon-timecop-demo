@@ -1,5 +1,6 @@
 {
   "predef": [
+    "Timecop",
     "document",
     "window",
     "location",

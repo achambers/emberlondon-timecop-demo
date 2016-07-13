@@ -7,6 +7,8 @@ module.exports = function(defaults) {
     // Add options here
   });
 
+  if (EmberApp.env() === 'test') { app.import('vendor/shims/timecop.js'); }
+
   // Use `app.import` to add additional libraries to the generated
   // output files.
   //
