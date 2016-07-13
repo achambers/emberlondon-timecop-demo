@@ -1,17 +1,18 @@
+import Ember from 'ember';
 import { test } from 'qunit';
 import moduleForAcceptance from 'emberlondon/tests/helpers/module-for-acceptance';
-import Timecop from 'timecop';
+
+let stubClock = Ember.Service.extend({
+  now() {
+    return new Date(2012, 1, 21, 14, 30);
+  },
+});
 
 moduleForAcceptance('Acceptance | view the time', {
   beforeEach() {
-    Timecop.install();
-    Timecop.freeze(new Date(2012, 1, 21, 14, 30));
+    this.application.register('service:stubClock', stubClock);
+    this.application.inject('controller:time', 'clock', 'service:stubClock');
   },
-
-  afterEach() {
-    Timecop.returnToPresent();
-    Timecop.uninstall();
-  }
 });
 
 test('view the current time', function(assert) {
