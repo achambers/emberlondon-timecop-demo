@@ -15,7 +15,7 @@ moduleForAcceptance('Acceptance | view the time', {
 });
 
 test('view the current time', function(assert) {
-  assert.expect(2);
+  assert.expect(3);
   visit('/');
 
   andThen(function() {
@@ -26,5 +26,9 @@ test('view the current time', function(assert) {
 
   andThen(function() {
     assert.equal(find('.time').text(), '2012-02-21T14:30:00.000Z');
+  });
+
+  andThen(function() {
+    assert.equal(find('.alert').text().trim(), 'Congratulations...You have won....The time');
   });
 });
